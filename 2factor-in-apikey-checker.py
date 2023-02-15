@@ -1,7 +1,7 @@
 '''
 Please use this script for educational purposes only. I am not responsible for any misuse of this script.
 
-Description: This script checks if your TheMovieDB API Key is valid or not.
+Description: This script checks if your 2Factor.in Api key are valid or not.
 
 Author: Chapi Menge
 Contact:
@@ -37,22 +37,22 @@ class CLIColors:
     UNDERLINE = '\033[4m'
 
 def main():
-    api = '' or input("Enter your API Key: ")
-    if not api:
-        print(CLIColors.FAIL + "API Key cannot be empty" + CLIColors.ENDC)
+    api_key = '' or input("Enter your Api Key: ")
+    if not api_key:
+        print(CLIColors.FAIL + "Api Key cannot be empty" + CLIColors.ENDC)
         sys.exit()
     
-    result = requests.get('https://api.themoviedb.org/3/configuration?api_key=' + api)
-    if result.status_code == 200:
+    url = f'https://2factor.in/API/V1/{api_key}/SMS/+12024463369/AUTOGEN/OTP1'
+    response = requests.get(url)
+    if response.status_code == 200:
         # print with colors
-        print(CLIColors.OKGREEN + "Your API Key is valid" + CLIColors.ENDC)
+        print(CLIColors.OKGREEN + "Your Api Key is valid" + CLIColors.ENDC)
+        result = response.json()
         print('Here is the complete response: ')
-        print(result.json())
+        print(result)
     else:
-        print(CLIColors.FAIL + "Your API Key is invalid" + CLIColors.ENDC)
-        print('Here is the complete response: ')
-        print(result.json())
-
+        print(CLIColors.FAIL + "Your Api Key is invalid" + CLIColors.ENDC)
+        
 if __name__ == '__main__':
     main()
     

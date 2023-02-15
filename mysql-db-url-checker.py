@@ -12,10 +12,11 @@ Contact:
     Github: https://github.com/chapimenge3
 '''
 import sys
+import os
 try:
     import mysql.connector as mysql
 except Exception as e:
-    if str(e) == "No module named mysql.connector":
+    if "No module named" in str(e):
         print("Please install mysql.connector module using pip install mysql-connector-python")
         print('If you want me to install it for you, type yes or y')
         if input().lower() in ['yes', 'y']:

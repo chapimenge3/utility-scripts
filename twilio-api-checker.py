@@ -17,7 +17,7 @@ import sys
 try:
     import requests
 except Exception as e:
-    if str(e) == "No module named requests":
+    if "No module named" in str(e):
         print("Please install requests module using pip install requests")
         print('If you want me to install it for you, type yes or y')
         if input().lower() in ['yes', 'y']:

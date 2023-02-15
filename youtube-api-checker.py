@@ -1,7 +1,7 @@
 '''
 Please use this script for educational purposes only. I am not responsible for any misuse of this script.
 
-Description: This script checks if your TheMovieDB API Key is valid or not.
+Description: This script checks if a YouTube API key is valid or not.
 
 Author: Chapi Menge
 Contact:
@@ -37,22 +37,20 @@ class CLIColors:
     UNDERLINE = '\033[4m'
 
 def main():
-    api = '' or input("Enter your API Key: ")
-    if not api:
-        print(CLIColors.FAIL + "API Key cannot be empty" + CLIColors.ENDC)
+    api_key = '' or input("Enter your YouTube API key: ")
+    if not api_key:
+        print(CLIColors.FAIL + "API key cannot be empty" + CLIColors.ENDC)
         sys.exit()
-    
-    result = requests.get('https://api.themoviedb.org/3/configuration?api_key=' + api)
-    if result.status_code == 200:
-        # print with colors
-        print(CLIColors.OKGREEN + "Your API Key is valid" + CLIColors.ENDC)
-        print('Here is the complete response: ')
-        print(result.json())
+    url = "https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true&key=" + api_key
+    response = requests.get(url)
+    if response.status_code == 200:
+        print(CLIColors.OKGREEN + "API key is valid" + CLIColors.ENDC)
+        print("Your YouTube channel ID is: " + response.json()['items'][0]['id'])
+        print("Your YouTube channel name is: " + response.json()['items'][0]['snippet']['title'])
+        print("Response: " + str(response.json()))
     else:
-        print(CLIColors.FAIL + "Your API Key is invalid" + CLIColors.ENDC)
-        print('Here is the complete response: ')
-        print(result.json())
-
-if __name__ == '__main__':
-    main()
+        print(CLIColors.FAIL + "API key is invalid" + CLIColors.ENDC)
     
+
+if __name__ == "__main__":
+    main()
