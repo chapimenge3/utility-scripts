@@ -1,3 +1,17 @@
+'''
+Please use this script for educational purposes only. I am not responsible for any misuse of this script.
+
+Description: This script checks if your Twilio Account SID and Auth Token are valid or not.
+
+Author: Chapi Menge
+Contact:
+    Twitter: @chapimenge3
+    Instagram: @chapimenge3
+    Telegram: @chapimenge
+    LinkedIn: https://www.linkedin.com/in/chapimenge/
+    Github: https://github.com/chapimenge3
+'''
+
 import os
 import sys
 try:
@@ -49,4 +63,5 @@ def main():
         print("Here is the complete response: ")
         print(response.text)
         
-main()
+if __name__ == '__main__':
+    main()
